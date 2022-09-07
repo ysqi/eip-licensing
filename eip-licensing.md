@@ -7,6 +7,7 @@ type: Standards Track
 category: ERC
 status: Draft
 created: 2022-08-10
+
 requires: 165
 ---
 
@@ -245,6 +246,37 @@ This is the "ERC52XX licensing agreement Metadata JSON Schema" referenced above.
 } // the strings of timeOfSignature
 ```
 
+The **Registry** contract MAY implements the **IERC55XXRegistryAuthorization** and **IERC165** inferfaces.
+
+```solidity
+pragma solidity ^0.6.0;
+import "./IERC165.sol";
+
+///
+///
+interface IERC55XXRegistryAuthorization is IERC165 {
+
+    event Licence(address indexed _oNFT, uint256 indexed _oNFTId, address indexed _dNFT, uint256 indexed _dNFTId, licensing_agreement_type _type, uint64 _expiryTime, string _licenseIdentifier);
+
+    event Approval(address indexed _oNFT, address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
+    
+    event ApprovalForAll(address indexed _oNFT, address indexed _owner, address indexed _operator, bool _approved);
+
+    function licence(address indexed _oNFT, uint256 indexed _oNFTId, address indexed _dNFT, uint256 indexed _dNFTId, licensing_agreement_type _type, uint64 _expiryTime, string _licenseIdentifier) external payable; //TODO: mortgages or not?
+    
+    function approve(address indexed _oNFT, address _approved, uint256 _tokenId) external payable; //TODO: why payable?
+    
+    function setApprovalForAll(address indexed _oNFT, address _operator, bool _approved) external;
+    
+    function getApproved(address indexed _oNFT, uint256 _tokenId) external view returns (address);
+    
+    function isApprovedForAll(address indexed _oNFT, address _owner, address _operator) external view returns (bool);
+
+}
+```
+
+
+
 ### Examples
 
 #### Deploying an ERC-721 and signaling support for ERC-52XX
@@ -276,6 +308,8 @@ function checkLARegistry(address _contract) internal returns (bool) {
     return success;
  }
 ```
+
+
 
 ## Rationale
 
