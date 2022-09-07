@@ -1,14 +1,16 @@
 ---
 eip: 52XX
 title: NFT Licensing Standard
+author:  Timi (@0xTimi), Robin, qige ...
 discussions-to: https://github.com/ethereum/EIPs/issues/xxx
-author: Timi (@0xtimi), Robin, ...
-status: Draft
 type: Standards Track
 category: ERC
+status: Draft
 created: 2022-08-10
 requires: 165
-author: Timi (@0xtimi), Robin, ...
+---
+
+
 ## Simple Summary
 
 A standardized way to store and retrieve the granted licensing agreements for non-fungible token(NFT) derivative works, which are also NFTs but recreated based on some other underlying NFTs.  
