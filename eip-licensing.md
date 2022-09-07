@@ -19,17 +19,17 @@ In this standard, an NFT derivative work is hereinafter referred to as a "**dNFT
 
 ## Abstract
 
-The NFT owner, knowns as "Licensor", may authorize another re-creator (person or entity), knowns as "Licensee", to use authorized rights to recreate derivative works (**dNFT**s),  in exchange for an agreed payment, known as a "Royalty". A licensing agreement is a contract to record this deal between the licensor and licensee.
+The NFT owner, knowns as "Licensor", may authorize another re-creator (person or entity), knowns as "Licensee", to use authorized rights to recreate derivative works (**dNFT**s),  in exchange for an agreed payment, known as a "Royalty". A licensing agreement is to outline the terms and conditions related to the deal between the licensor and licensee.
 
-The following standard allows dNFTs' smart contracts ,  which support [ERC-721](./eip-721.md) and [ERC-1155](./eip-1155.md) interfaces,  to declare granted licensing agreements in a simple way.  This is intended for anyone, including but not limited to NFT marketplaces,  that wants to support visible and recordable licensing agreements. It also means that the royalty should be paid under the licensing agreement every time the **dNFT** is sold or re-sold.
+The following standard allows dNFTs' smart contracts ,  which support [ERC-721](./eip-721.md) and [ERC-1155](./eip-1155.md) interfaces,  to declare granted licensing agreements in a simple way.  This is intended for anyone, including but not limited to NFT marketplaces,  that wants to support traceable and verifiable licensing agreements. The standard also governs the terms and conditions related to royalty when **dNFT**s is sold or re-sold.
 
 Any individual or marketplace is able to retrieve licensed credentials from a dNFT's contract with `authorizedBy()`, which specifies the detail of licensing agreement, include but not limited to  **oNFT**.  Those credentials can be verified in one **Registry** service, which implements this standard.
 
 In general, there are three important roles in this standard,
 
-- **oNFT**: an original underlying NFT. The holder of oNFT is Licensor.  An oNFT can be one arbitrary NFT which is not restrictered to this standard.
+- **oNFT**: an original underlying NFT. The holder of oNFT is Licensor.  An oNFT can be one arbitrary NFT which is not restricted by this standard.
 - **dNFT**: an NFT derivative work recreated based on one or multiple oNFTs. the holder of dNFT is Licensee.
-- **Registry**: a licensing agreement registry that is a smart contract as a service being able to verify whether a credential is signed or released by the holder of oNFT. A registry smart contract should have be audited by at least one creditable security audit platforms. 
+- **Registry**: a licensing agreement registry that is a smart contract as a service being able to verify whether a credential is signed or released by the holder of oNFT. A registry smart contract should have been audited by at least one creditable security audit platforms. 
 
 Anyone can retrieve licensing royalty information with `licensingRoyalty` via the **Registry** *(? or from dNFT)*. It's worth noting that licensing royalty is different from royalty in [ERC-2981](./eip-2981.md) which declare royalty payment to creator while licensing royalty declares payment to licensors.  Despite It is hard to tell whether a transfer is a resale transaction or a gift or even a transfer to owner's another address such that the royalty payment may just be voluntary in practice, we encourage marketplaces to comply with licensing agreements to deliver royalties.
 
@@ -37,11 +37,11 @@ This ERC should be considered a minimal, gas-efficient building block for furthe
 
 ## Motivation
 
-In general, some creators of NFTs will transfer intellectual property (IP), commercial, and exclusive licensing rights to the individual NFT holders. This enable NFT owners to create artworks and products based on their owns. However, there isn't a standardized and easy way in which NFT owners are able to grant others rights of recreating derivative works based on their owned NFT. 
+In general, some creators of NFTs will transfer intellectual property (IP), commercial, and exclusive licensing rights to the individual NFT holders. This enable NFT owners to create artworks and products by themselves. However, currently there isn't a standardized and clear way in which NFT owners are able to grant others rights of recreating derivative works based on their owned NFT. 
 
-This standard allows the NFT owner, knowns as "Licensor", to have a standardized way to signal a licensing agreement to re-creators, knowns as "Licensee", in exchange for an agreed payment, known as a "Royalty".  With this licensing agreement,  the licensee has the right to recreate relevant dNFTs which clearly declare the authorized agreements.  Meanwhile, this declaration should be able to be verified by a creditable decentralized **Registry** service at any given time.  In such way,  the licensing royalty payment can be paid to licensors every time dNFT is sold or re-sold. Taking the moment when the dNFT is minted as the cut-off point, the phase before is called the **Authorization** phase, and the subsequent phase is called the **Discovery** phase.
+This standard allows the NFT owner, knowns as "Licensor", to have a standardized way to signal a licensing agreement to re-creators, knowns as "Licensee", in exchange for an agreed payment, known as a "Royalty".  With this licensing agreement,  the licensee has the right to recreate relevant dNFTs which clearly declare the authorized agreements.  Meanwhile, this declaration should be able to be verified by a creditable decentralized **Registry** service at any given time.  In such way,  the licensing royalty payment can be paid to licensors every time dNFT is sold or re-sold as regulated by the agreement. Taking the moment when the dNFT is minted as the cut-off point, the phase before is called the **Authorization** phase, and the subsequent phase is called the **Discovery** phase.
 
-This standard defines the **Authorization** as a loose and optional interface, but the **Discovery** as a strict and compulsory interface. The reason here is that, not matter how the licensing agreement is licensed via a **Registry**, the most important thing is that marketplaces and application can adopt a  unified interface to discover and verify these agreements.
+This standard defines the **Authorization** as a loose and optional interface, but the **Discovery** as a strict and compulsory interface. The reason here is that, no matter how the licensing agreement is licensed via a **Registry**, the most important thing is that marketplaces and application can adopt a  unified interface to discover and verify these agreements.
 
 To be specific, to support standard **Discovery**, 
 
@@ -56,7 +56,7 @@ To be specific, to support standard **Discovery**,
    - Licensor
    - validity of license / expiry date
    - date of signature
-   - some indentifier similar to `SPDX-License-Identifier: MIT `
+   - some identifier similar to `SPDX-License-Identifier: MIT `
    - type of licensing agreement
      - Non-Exclusive   *// default*
      - Exclusive
@@ -301,13 +301,3 @@ This standard is compatible with current [ERC-721](./eip-721.md) , [ERC-1155](./
 ## Copyright
 
 Copyright and related rights waived via [CC0](../LICENSE.md).
-
-## Todo
-
-- If oNFT is sold to new owner, the licensing payment should be paid to the new owner(**Beneficiary**) when dNFT is sold or re-sold. 
-- **The Licensing Agreement can be of three types:**
-  - **Exclusive License:** under this type of License only the Licensee will be entitled to use the IP rights. The Licensor will be barred from using it and giving the license to any third parties during the license period.
-  - **Sole License:** under this, both the Licensor and Licensee will be entitled to use the IP. Such rights cannot be transferred to any third parties, and the Licensor will be barred from issuing any new license during the term of the Agreement with the Licensee.
-  - **Non-Exclusive License:** This is the commonly used method of licensing. Under this, Licensee will be allowed to use its rights and Licensor will be free to issue new licences to any third parties.
-- supports EIP-1155
-  - EIP-1155 don't have `ownerOf(tokenId)`
